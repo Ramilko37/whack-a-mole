@@ -194,6 +194,7 @@ body {
     height: 100%;
     z-index: 1000;
     background-image:url('images/WhackAMole-3.jpg');
+    background-size: 100%;
     background-size: cover;
 
 }
