@@ -2,19 +2,31 @@ const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
 const countdownBoard = document.querySelector('.countdown');
-const startButton = document.querySelector('.button');
+const startScreen = document.querySelector('.startScreen');
+const gameScreen = document.querySelector('.wrapper');
+const gameOverScreen = document.querySelector('.gameOverScreen');
+const totalScore = document.querySelector('.totalScore');
+const bestScore = document.querySelector('.bestScore');
+const zeroScore = document.querySelector('.zeroScore');
+
+const startButton = document.getElementById('start-button');
+const resetButton = document.getElementById('reset-button');
 
 
 let lastHole;
 let timeUp = false;
-let timeLimit = 20000;
+let timeLimit = 2000;
 let score = 0;
 let countdown;
+let bestScoreNumber = 0;
+
+startButton.addEventListener('click', startGame);
+resetButton.addEventListener('click', restartGame);
 
 function pickRandomHole(holes) {
     const randomHole = Math.floor(Math.random() * holes.length)
     const hole = holes[randomHole];
-    if (hole === lastHole) {
+    if (hole === lastHole) { //узнать, что в ластхол
         return pickRandomHole(holes);
     }
     lastHole = hole;
@@ -22,7 +34,7 @@ function pickRandomHole(holes) {
 }
 
 function popOut() {
-    const time = Math.random() * 1300 + 400;
+    const time = Math.random() * 1300 + 400 ; // почему??
     const hole = pickRandomHole(holes);
     hole.classList.add('up');
     setTimeout(function (){
@@ -31,13 +43,13 @@ function popOut() {
     }, time)
 };
 
-popOut();
-
 function startGame() {
+    gameScreen.classList.toggle('wrapper_visible')
     countdown = timeLimit/1000;
-    scoreBoard.textContent = 0;
+    score = 0;
+    scoreBoard.textContent = 'Whacked: ' + score;
     scoreBoard.style.display = 'block';
-    countdownBoard.textContent = countdown;
+    countdownBoard.textContent = 'Time left: ' + countdown;
     timeUp = false;
     score = 0;
     popOut();
@@ -47,26 +59,65 @@ function startGame() {
 
     let startCountdown = setInterval(function (){
         countdown -= 1;
-        countdownBoard.textContent = countdown;
-        if (countdown < 0) {
+        countdownBoard.textContent = 'Time left: ' + countdown;
+        if (countdown <= 0) {
             countdown = 0;
             clearInterval(startCountdown);
-            countdown.textContent = 'Times up!'
+            // countdown.textContent = 'Times up!'
+            gameScreen.classList.toggle('.wrapper_hidden');
+            resetButton.classList.remove('visibility-hidden');
+            gameOverScreen.classList.add('visible');
+            // showTotalScore();
+            console.log(score)
+            showZero();
         }
-    }, 1000);
+    },1000);
+}
+function showZero() {
+    if (score < 1) {
+        zeroScore.classList.add('visible');
+        zeroScore.textContent = '!!!'
+    }
 }
 
-startButton.addEventListener('click', startGame);
+
+function restartGame() {
+    gameOverScreen.classList.toggle('visible');
+    gameScreen.classList.toggle('visible');
+    startGame()
+}
+
+function noWhackes() {
+    if (score = 0) {
+        zeroScore.classList.add('visible')
+        return zeroScore.textContent = 'No whackes';
+        console.log('!!!!!!')
+    }
+    return zeroScore
+}
+
 
 function whack(e) {
     score++;
+
     this.style.backgroundImage = "url('images/whacked.png')";
     this.style.pointerEvents = 'none';
     setTimeout(() => {
         this.style.backgroundImage = "url('images/mole.png')";
         this.style.pointerEvents = 'all';
     }, 800);
-    scoreBoard.textContent = score;
+    scoreBoard.textContent = 'Whacked: ' + score;
+    // countdown +=1;
+
+    if (score > bestScoreNumber) {
+        bestScoreNumber = score;
+        console.log(bestScoreNumber)
+    }
+
+    totalScore.textContent = 'Your total score: ' + score;
+    bestScore.textContent = 'Your best score: ' + bestScoreNumber;
+    noWhackes();
+
 }
 
 moles.forEach(mole => mole.addEventListener('click', whack));

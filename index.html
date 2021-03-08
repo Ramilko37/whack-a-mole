@@ -6,10 +6,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="score">0</div>
-        <div class="countdown">countdown</div>
-        <button class="button">Start</button>
+<page>
+    <audio autoplay="true" controls preload="auto">
+        <source src="music/bgsound.wav" type="audio/ogg; codecs=vorbis">
+    </audio>
+    <div class="startScreen">
+        <img src="images/WhackAMole-3.jpg" class="image" alt="image">
+        <div ontouchstart="">
+            <div class="button" id="start-button">
+                <a href="#">Start Game</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper_hidden">
+            <div class="score">SCORE: 0</div>
+            <div class="countdown">countdown</div>
+
+
+
         <div class="game">
             <div class="hole hole1">
                 <div class="mole"></div>
@@ -32,8 +47,19 @@
 
         </div>
 
+        <div class="gameOverScreen">
+            <div class="totalScore"></div>
+            <div class="bestScore"></div>
+            <div class="zeroScore"></div>
+            <div class="button button_reset" id="reset-button">
+                <a href="#">Try Again</a>
+            </div>
+        </div>
+
     </div>
 
-    <script src="index.js"></script>
+</page>
+
+    <script type="module" src="index.js"></script>
 </body>
 </html>
