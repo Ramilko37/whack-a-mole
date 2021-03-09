@@ -15,7 +15,7 @@ const resetButton = document.getElementById('reset-button');
 
 let lastHole;
 let timeUp = false;
-let timeLimit = 10000;
+let timeLimit = 4000;
 let score = 0;
 let countdown;
 let bestScoreNumber = 0;
@@ -74,7 +74,7 @@ function startGame() {
     },1000);
 }
 function showZero() {
-    if (score < 1) {
+    if (score > 0) {
         zeroScore.classList.add('visible');
         zeroScore.textContent = '!!!'
     }
@@ -99,7 +99,6 @@ function noWhackes() {
 
 function whack(e) {
     score++;
-
     this.style.backgroundImage = "url('images/whacked.png')";
     this.style.pointerEvents = 'none';
     setTimeout(() => {
@@ -116,7 +115,7 @@ function whack(e) {
 
     totalScore.textContent = 'Your total score: ' + score;
     bestScore.textContent = 'Your best score: ' + bestScoreNumber;
-    noWhackes();
+
 
 }
 
