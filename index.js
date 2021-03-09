@@ -15,7 +15,7 @@ const resetButton = document.getElementById('reset-button');
 
 let lastHole;
 let timeUp = false;
-let timeLimit = 2000;
+let timeLimit = 10000;
 let score = 0;
 let countdown;
 let bestScoreNumber = 0;
