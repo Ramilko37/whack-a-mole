@@ -30,7 +30,7 @@ function pickRandomHole(holes) {
     }
     lastHole = hole;
     return hole;
-}
+};
 
 function popOut() {
     const time = Math.random() * 1000;
@@ -40,7 +40,7 @@ function popOut() {
         hole.classList.remove('up');
         if (!timeUp) popOut();
     }, time)
-}
+};
 
 function startGame() {
     gameScreen.classList.toggle('wrapper_visible')
@@ -69,14 +69,14 @@ function startGame() {
             showZero();
         }
     },1000);
-}
+};
 
 function showZero() {
     if (score < 1) {
         zeroScore.classList.add('visible');
-        zeroScore.textContent = 'Whacked 0 moles. You can do better!'
+        zeroScore.textContent = 'Whacked 0 moles. You can do better!';
     }
-}
+};
 
 
 function restartGame() {
@@ -84,7 +84,7 @@ function restartGame() {
     gameScreen.classList.toggle('visible');
     zeroScore.classList.remove('visible');
     startGame()
-}
+};
 
 function whack(e) {
     score++;
@@ -101,11 +101,8 @@ function whack(e) {
         bestScoreNumber = score;
         console.log(bestScoreNumber)
     }
-
     totalScore.textContent = 'Your total score: ' + score;
     bestScore.textContent = 'Your best score: ' + bestScoreNumber;
-
-
-}
+};
 
 moles.forEach(mole => mole.addEventListener('click', whack));
