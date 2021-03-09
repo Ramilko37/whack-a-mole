@@ -48,20 +48,21 @@ body {
 
 .totalScore {
     display: flex;
-    margin: 80px auto;
+    margin: 80px auto 0;
     font-size: 50px;
 }
 
 .bestScore {
     display: flex;
-    margin: 100px auto;
+    margin: 80px auto 0;
     font-size: 50px;
     color: red;
 }
 
 .zeroScore {
     display: flex;
-    margin: 140px auto;
+    margin: 0 auto;
+    padding: 0;
     font-size: 50px;
     color: red;
     visibility: hidden;
