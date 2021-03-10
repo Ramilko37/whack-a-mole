@@ -33,7 +33,7 @@ function pickRandomHole(holes) {
 };
 
 function popOut() {
-    const time = Math.random() * 1000;
+    const time = Math.random() * 1500;
     const hole = pickRandomHole(holes);
     hole.classList.add('up');
     setTimeout(function (){
