@@ -4,6 +4,8 @@ Welcome to a classic whack-a-mole game developed with HTML, CSS and Vanilla JS r
 
 More moles you hit better you do!
 
+You can play it here: https://ramilko37.github.io/whack-a-mole/
+
 Screenshots: 
 
 Start game screen.
